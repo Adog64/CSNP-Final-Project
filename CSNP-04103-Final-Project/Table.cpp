@@ -9,6 +9,7 @@ Table::Table()
 Table::Table(int size)
 {
     _size = size;
+    _reserved = false;
 }
 
 int Table::getSize()
