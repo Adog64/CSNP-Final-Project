@@ -44,17 +44,17 @@ int main()
 
 vector<Table> setupRestaurant()
 {
-    int tableCount;
+    int tableCount = 5;
     vector<Table> tables;
 
-    cout << "How many tables are in your restaraunt? ";
-    cin >> tableCount;
+    /*cout << "How many tables are in your restaraunt? ";
+    cin >> tableCount;*/
 
     for (int i = 0; i < tableCount; i++)
     {
-        int size;
-        cout << "Size of table #" << i + 1 << ": ";
-        cin >> size;
+        int size = 4;
+        /*cout << "Size of table #" << i + 1 << ": ";
+        cin >> size;*/
         tables.push_back(Table(size));
     }
 
@@ -192,6 +192,13 @@ bool processCommand(string cmd)
         else
             cout << "Sorry, we cannot accomodate your party size." << endl;
     }
+    else if (cmd == "tables")
+    {
+        for (int i = 0; i < tables.size(); i++)
+        {
+            cout << "Table #" << i + 1 << ": seats " << tables.at(i).getSize() << ". " << (tables.at(i).isReserved() ? "Reserved at " + string(formatTime(tables.at(i).when())) : "Not reserved") << endl;
+        }
+    }
     else if (cmd == "help")
     {
         cout << "************************** Help Menu *******************************" << endl
@@ -200,12 +207,13 @@ bool processCommand(string cmd)
             << "clear <n>    >>>  Prepare table n for the next customer." << endl
             << "party <n>    >>>  Find and reserve a table for a party of n people." << endl
             << "table <n>    >>>  Retrieve the data about a certain table" << endl
+            << "tables       >>>  Retrieve data from all tables" << endl
             << "wait <n>     >>>  Wait time for a party of n people" << endl;
     }
-    // else
-    // {
-    //     cout << "Invalid command. Type \"help\" to view the list of valid commands." << endl;
-    // }
+    else
+    {
+        cout << "Invalid command. Type \"help\" to view the list of valid commands." << endl;
+    }
     return true;
 }
 
